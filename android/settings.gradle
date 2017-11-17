@@ -1,0 +1,3 @@
+rootProject.name = 'xampr_native'
+
+include ':app'
