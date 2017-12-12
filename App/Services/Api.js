@@ -1,8 +1,11 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
 
+const beta2xampr = 'http://beta2xampr.azurewebsites.net/api/';
+const prod = 'http://xamprrelease02.cloudapp.net/api/';
+
 // our "constructor"
-const create = (baseURL = 'https://api.github.com/') => {
+const create = (baseURL = beta2xampr) => {
   // ------
   // STEP 1
   // ------
@@ -14,7 +17,8 @@ const create = (baseURL = 'https://api.github.com/') => {
     baseURL,
     // here are some default headers
     headers: {
-      'Cache-Control': 'no-cache'
+      'Cache-Control': 'no-cache',
+      'token' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ4YW1wciIsInVuaXF1ZV9uYW1lIjoiODUyMzgyMjY5MSIsInVzZXJJZCI6Ijg1MjM4MjI2OTEiLCJkZXZpY2VJZCI6Ijg2Nzk3MDAyODc5ODU5OSIsInRpbWUiOiIxMi8xMi8yMDE3IDg6NDQ6MzAgQU0iLCJleHAiOjE1MTMxNTQ2NzAsIm5iZiI6MTUxMzA2ODI3MH0.mtDYeMp3zRwaL-67FtfCiXRtDXPdgxZUlM8XU035_pM'
     },
     // 10 second timeout...
     timeout: 10000
@@ -34,9 +38,14 @@ const create = (baseURL = 'https://api.github.com/') => {
   // Since we can't hide from that, we embrace it by getting out of the
   // way at this level.
   //
-  const getRoot = () => api.get('')
-  const getRate = () => api.get('rate_limit')
-  const getUser = (username) => api.get('search/users', {q: username})
+  //const getRoot = () => api.get('')
+  const getXwall = (lastReadTimeInTics, DeviceType, VersionNumber ) => api.get('ActivityParticipation/GetXWallActivities'
+  ,  {
+    lastReadTimeInTics: lastReadTimeInTics, 
+    deviceType: DeviceType, 
+    versionNumber: VersionNumber
+  })
+  //const getUser = (username) => api.get('search/users', {q: username})
 
   // ------
   // STEP 3
@@ -51,10 +60,7 @@ const create = (baseURL = 'https://api.github.com/') => {
   // private scoped goodies in JavaScript.
   //
   return {
-    // a list of the API functions from step 2
-    getRoot,
-    getRate,
-    getUser
+    getXwall
   }
 }
 

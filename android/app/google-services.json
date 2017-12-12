@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1022462418661",
+    "firebase_url": "https://xampr-380c5.firebaseio.com",
+    "project_id": "xampr-380c5",
+    "storage_bucket": "xampr-380c5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022462418661:android:fc064f717cfa3148",
+        "android_client_info": {
+          "package_name": "com.xampr_native"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022462418661-4rlj4sdgqfcuaim2e9ivfdulgttqsfog.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDefBoaOqAeLmSdgHauxJGYP8mgjAH2vAA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
