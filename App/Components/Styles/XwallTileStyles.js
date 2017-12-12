@@ -5,14 +5,14 @@ import { ApplicationStyles, Metrics, Colors } from '../../Themes/index';
 var { width, height } = Dimensions.get('window');
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
-  
+
  actionItem: {
     color: '#777',
     fontSize: 20,
     marginLeft: 10,
   },
   border: {
-    borderColor: '#ddd',
+    borderColor: '#eee',
     borderBottomWidth: 1,
     paddingBottom: 8,
   },
@@ -22,6 +22,7 @@ export default StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     flexDirection: 'row',
+    paddingTop:10,
   },
   description: {
     color: '#666',
@@ -66,8 +67,10 @@ export default StyleSheet.create({
     color: '#666',
   },
   title: {
+    color: '#222',
     fontSize: 15,
     fontWeight: "400",
+    marginTop: -4,
   },
   thumbnail: {
     width: 40,

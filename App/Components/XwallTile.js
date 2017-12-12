@@ -11,8 +11,9 @@ export default class XwallTile extends Component {
         activity: PropTypes.object,
         navigator: PropTypes.object
       }
-    
+
   render () {
+
     return (
         <View
         style={styles.container} >
@@ -20,7 +21,7 @@ export default class XwallTile extends Component {
         {/* left side */}
         <View style={styles.left} >
           <Image
-            source={require('../Images/activity_icons/EventPlannerActivity.png')}
+            source={require('../Images/activity_icons/CommunityActivity.png')}
             style={styles.thumbnail} />
         </View>
 
@@ -32,7 +33,7 @@ export default class XwallTile extends Component {
           </Text>
           <Text
             style={styles.description}>
-             {this.props.activity.ActivityDescription}
+             {this.props.activity.ActivityType}
           </Text>
           <View
             style={styles.status} >
