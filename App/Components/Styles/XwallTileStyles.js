@@ -6,70 +6,73 @@ var { width, height } = Dimensions.get('window');
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
   
+ actionItem: {
+    color: '#777',
+    fontSize: 20,
+    marginLeft: 10,
+  },
+  border: {
+    borderColor: '#ddd',
+    borderBottomWidth: 1,
+    paddingBottom: 8,
+  },
   center: {
     flex: 4,
   },
   container: {
-    backgroundColor: colors.transparent,
+    backgroundColor: '#fff',
     flexDirection: 'row',
-    padding: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: colors.drawer,
-    borderBottomWidth: 0.5
   },
   description: {
-    fontSize: 12,
+    color: '#666',
+    fontSize: 13,
+    paddingTop: 2,
   },
   left: {
     flex: 1,
-  },
-  more: {
-    fontSize: 20,
-    padding: 4,
-    margin: 4,
-  },
-  mute: {
-    fontSize: 20,
-    padding: 4,
-    margin: 4,
+    paddingLeft: 12,
   },
   right: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingRight: 5,
   },
   rightBottom: {
     flexDirection: 'row',
+    paddingTop: 5,
   },
   status: {
     alignSelf: 'flex-start',
-    backgroundColor: 'green',
+    backgroundColor: '#5a5',
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 2,
     padding: 2,
-    marginTop: 2,
+    marginTop: 4,
   },
   statusIcon: {
     color: '#fff',
-    fontSize: 8,
+    fontSize: 10,
     marginLeft: 4,
     marginRight: 4,
   },
   statusText: {
     color: '#fff',
-    fontSize: 8,
+    fontSize: 10,
     marginRight: 4,
   },
   time: {
-    fontSize: 12,
+    fontSize: 11,
+    color: '#666',
   },
   title: {
-    fontWeight: 'bold',
+    fontSize: 15,
+    fontWeight: "400",
   },
   thumbnail: {
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     borderRadius: 4,
-  },
+  }
+
 })

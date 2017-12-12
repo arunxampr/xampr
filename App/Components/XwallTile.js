@@ -14,7 +14,8 @@ export default class XwallTile extends Component {
     
   render () {
     return (
-        <View style={styles.container} >
+        <View
+        style={styles.container} >
 
         {/* left side */}
         <View style={styles.left} >
@@ -24,33 +25,37 @@ export default class XwallTile extends Component {
         </View>
 
         {/* center content */}
-        <View style={styles.center} >
-          <Text>   {this.props.activity.ActivityName}          </Text>
-          <Text  style={styles.description}>
-             {this.props.activity.ActivityDescription} 
+        <View style={[styles.center, styles.border]} >
+          <Text
+            style={styles.title}>
+            {this.props.activity.ActivityName}
           </Text>
-          <View            style={styles.status} >
+          <Text
+            style={styles.description}>
+             {this.props.activity.ActivityDescription}
+          </Text>
+          <View
+            style={styles.status} >
             <Ionicons name="md-checkmark-circle" style={styles.statusIcon} />
-            <Text              style={styles.statusText} >
+            <Text
+              style={styles.statusText} >
               0/2
             </Text>
           </View>
         </View>
 
         {/* right side  */}
-        <View style={styles.right} >
+        <View style={[styles.right, styles.border]} >
           <Text
             style={styles.time} >
             4:00 PM
           </Text>
           <View
             style={styles.rightBottom} >
-            <Ionicons name="md-volume-mute" style={styles.mute} />
-            <Ionicons name="ios-more" style={styles.more} />
+            <Ionicons name="md-volume-mute" style={styles.actionItem} />
+            <Ionicons name="ios-more" style={styles.actionItem} />
           </View>
         </View>
-
-
 
       </View>
       )
