@@ -5,6 +5,7 @@ import { TouchableOpacity, Text, View, Image } from 'react-native'
 import styles from './Styles/XwallTileStyles'
 import { Ionicons } from '@expo/vector-icons';
 import { getActivityImageSource } from '../Utilities/Constants';
+import Moment from 'moment';
 
 export default class XwallTile extends Component {
     static propTypes = {
@@ -13,12 +14,26 @@ export default class XwallTile extends Component {
         navigator: PropTypes.object
       }
 
+  formatTime = (time) => {
+    if (time) {
+      let today = Moment().add(-1, 'day').format('DD-MM-YYYY');
+      let recordedDateTime = Moment(time, 'DD-MM-YYYY^hh:mm a').format('DD-MM-YYYY hh:mm A');
+      let date = Moment(recordedDateTime, 'DD-MM-YYYY hh:mm A').format('DD-MM-YYYY');
+      if (today === date) {
+        return Moment(recordedDateTime, 'DD-MM-YYYY hh:mm A').format('hh:mm A');
+      } else {
+        return Moment(recordedDateTime, 'DD-MM-YYYY hh:mm A').format('MMM DD');
+      }
+    }
+    return time;
+  }
+
   render () {
 
     let thumbnail = getActivityImageSource(this.props.activity.ActivityType);
-    let title = this.props.activity.ActivityName;
-    let description = this.props.activity.ActivityType;
-    let time = '4:00 PM';
+    let name = this.props.activity.ActivityName;
+    let lastMessage = this.props.activity.LastMessage;
+    let time = this.formatTime(this.props.activity.ETA);
 
     return (
       <View
@@ -35,18 +50,18 @@ export default class XwallTile extends Component {
         <View style={[styles.center, styles.border]} >
           <Text
             style={styles.title}>
-            { title }
+            { name }
           </Text>
           <Text
             style={styles.description}>
-             { description }
+             { lastMessage }
           </Text>
           <View
             style={styles.status} >
             <Ionicons name="md-checkmark-circle" style={styles.statusIcon} />
             <Text
               style={styles.statusText} >
-              0/2
+              0/1
             </Text>
           </View>
         </View>
