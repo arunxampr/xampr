@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { TouchableOpacity, Text, View, Image } from 'react-native'
 import styles from './Styles/XwallTileStyles'
 import { Ionicons } from '@expo/vector-icons';
+import { getActivityImageSource } from '../Utilities/Constants';
 
 export default class XwallTile extends Component {
     static propTypes = {
@@ -14,14 +15,19 @@ export default class XwallTile extends Component {
 
   render () {
 
+    let thumbnail = getActivityImageSource(this.props.activity.ActivityType);
+    let title = this.props.activity.ActivityName;
+    let description = this.props.activity.ActivityType;
+    let time = '4:00 PM';
+
     return (
-        <View
+      <View
         style={styles.container} >
 
         {/* left side */}
         <View style={styles.left} >
           <Image
-            source={require('../Images/activity_icons/CommunityActivity.png')}
+            source={ thumbnail }
             style={styles.thumbnail} />
         </View>
 
@@ -29,11 +35,11 @@ export default class XwallTile extends Component {
         <View style={[styles.center, styles.border]} >
           <Text
             style={styles.title}>
-            {this.props.activity.ActivityName}
+            { title }
           </Text>
           <Text
             style={styles.description}>
-             {this.props.activity.ActivityType}
+             { description }
           </Text>
           <View
             style={styles.status} >
@@ -49,7 +55,7 @@ export default class XwallTile extends Component {
         <View style={[styles.right, styles.border]} >
           <Text
             style={styles.time} >
-            4:00 PM
+            { time }
           </Text>
           <View
             style={styles.rightBottom} >

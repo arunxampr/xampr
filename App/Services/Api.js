@@ -18,7 +18,7 @@ const create = (baseURL = beta2xampr) => {
     // here are some default headers
     headers: {
       'Cache-Control': 'no-cache',
-      'token' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ4YW1wciIsInVuaXF1ZV9uYW1lIjoiODUyMzgyMjY5MSIsInVzZXJJZCI6Ijg1MjM4MjI2OTEiLCJkZXZpY2VJZCI6Ijg2Nzk3MDAyODc5ODU5OSIsInRpbWUiOiIxMi8xMi8yMDE3IDg6NDQ6MzAgQU0iLCJleHAiOjE1MTMxNTQ2NzAsIm5iZiI6MTUxMzA2ODI3MH0.mtDYeMp3zRwaL-67FtfCiXRtDXPdgxZUlM8XU035_pM'
+      'token' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ4YW1wciIsInVuaXF1ZV9uYW1lIjoiODUyMzgyMjY5MSIsInVzZXJJZCI6Ijg1MjM4MjI2OTEiLCJkZXZpY2VJZCI6Ijg2Nzk3MDAyODc5ODU5OSIsInRpbWUiOiIxMi8xMy8yMDE3IDk6MDM6MDIgQU0iLCJleHAiOjE1MTMyNDIxODIsIm5iZiI6MTUxMzE1NTc4Mn0.S1621Dx6SB21B2ijTdBeF5mboC0gcA8SxYminH6KL8Q'
     },
     // 10 second timeout...
     timeout: 10000
@@ -41,8 +41,8 @@ const create = (baseURL = beta2xampr) => {
   //const getRoot = () => api.get('')
   const getXwall = (lastReadTimeInTics, DeviceType, VersionNumber ) => api.get('ActivityParticipation/GetXWallActivities'
   ,  {
-    lastReadTimeInTics: lastReadTimeInTics, 
-    deviceType: DeviceType, 
+    lastReadTimeInTics: lastReadTimeInTics,
+    deviceType: DeviceType,
     versionNumber: VersionNumber
   })
   //const getUser = (username) => api.get('search/users', {q: username})
