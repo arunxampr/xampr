@@ -5,7 +5,7 @@ import { TouchableOpacity, Text, View, Image } from 'react-native'
 import styles from './Styles/XwallTileStyles'
 import { Ionicons } from '@expo/vector-icons';
 import { getActivityImageSource } from '../Utilities/Constants';
-import Moment from 'moment';
+import { formatDateTime } from '../Utilities/FormatDateTime';
 
 export default class XwallTile extends Component {
     static propTypes = {
@@ -14,26 +14,12 @@ export default class XwallTile extends Component {
         navigator: PropTypes.object
       }
 
-  formatTime = (time) => {
-    if (time) {
-      let today = Moment().add(-1, 'day').format('DD-MM-YYYY');
-      let recordedDateTime = Moment(time, 'DD-MM-YYYY^hh:mm a').format('DD-MM-YYYY hh:mm A');
-      let date = Moment(recordedDateTime, 'DD-MM-YYYY hh:mm A').format('DD-MM-YYYY');
-      if (today === date) {
-        return Moment(recordedDateTime, 'DD-MM-YYYY hh:mm A').format('hh:mm A');
-      } else {
-        return Moment(recordedDateTime, 'DD-MM-YYYY hh:mm A').format('MMM DD');
-      }
-    }
-    return time;
-  }
-
   render () {
 
     let thumbnail = getActivityImageSource(this.props.activity.ActivityType);
     let name = this.props.activity.ActivityName;
     let lastMessage = this.props.activity.LastMessage;
-    let time = this.formatTime(this.props.activity.ETA);
+    let time = formatDateTime(this.props.activity.ETA);
 
     return (
       <View
