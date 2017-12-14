@@ -58,4 +58,4 @@ buck-out/
 .env
 
 # Expo
-.expo
+.expo/*

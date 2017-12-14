@@ -44,7 +44,6 @@ export default StyleSheet.create({
   },
   status: {
     alignSelf: 'flex-start',
-    backgroundColor: '#5a5',
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 2,

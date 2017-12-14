@@ -6,19 +6,31 @@ import styles from './Styles/XwallTileStyles'
 import { Ionicons } from '@expo/vector-icons';
 import { getActivityImageSource } from '../Utilities/Constants';
 import { formatDateTime } from '../Utilities/FormatDateTime';
+import { getXwallTileStatus } from '../Utilities/XwallTileStatus';
 
 export default class XwallTile extends Component {
-    static propTypes = {
-        onPress: PropTypes.func,
-        activity: PropTypes.object,
-        navigator: PropTypes.object
-      }
+  static propTypes = {
+      onPress: PropTypes.func,
+      activity: PropTypes.object,
+      navigator: PropTypes.object
+    }
 
   render () {
 
+    // tile icon
     let thumbnail = getActivityImageSource(this.props.activity.ActivityType);
+
+    // name and last message
     let name = this.props.activity.ActivityName;
     let lastMessage = this.props.activity.LastMessage;
+
+    // status is displayed below last message
+    let status = getXwallTileStatus(this.props.activity.ActivityType);
+    let statusBackgroundColor = status.backgroundColor;
+    let statusIcon = status.icon;
+    let statusText = '2/2';
+
+    // date & time
     let time = formatDateTime(this.props.activity.ETA);
 
     return (
@@ -43,11 +55,11 @@ export default class XwallTile extends Component {
              { lastMessage }
           </Text>
           <View
-            style={styles.status} >
-            <Ionicons name="md-checkmark-circle" style={styles.statusIcon} />
+            style={[styles.status, {backgroundColor: statusBackgroundColor}]} >
+            <Ionicons name={ statusIcon } style={styles.statusIcon} />
             <Text
               style={styles.statusText} >
-              0/1
+              { statusText }
             </Text>
           </View>
         </View>
@@ -58,6 +70,7 @@ export default class XwallTile extends Component {
             style={styles.time} >
             { time }
           </Text>
+          {/* more */}
           <View
             style={styles.rightBottom} >
             <Ionicons name="md-volume-mute" style={styles.actionItem} />
