@@ -1,4 +1,5 @@
 import XwallTile from './XwallTile';
+import BottomSheet from './BottomSheet';
 import Activities from '../Services/Activities';
 import Api from '../Services/Api';
 import React, { Component } from 'react'
@@ -27,7 +28,7 @@ export default class Xwall extends Component {
     *   (r1, r2) => r1.id !== r2.id}
     *************************************************************/
     const rowHasChanged = (r1, r2) => r1 !== r2
-    
+
     // DataSource configured
      this.ds = new ListView.DataSource({rowHasChanged})
 
@@ -97,6 +98,7 @@ getData = async() => {
           dataSource={this.state.dataSource}
           renderRow={this._renderRow}
         />
+        <BottomSheet />
       </View>
     )
   }
