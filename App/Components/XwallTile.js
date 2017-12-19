@@ -74,7 +74,9 @@ export default class XwallTile extends Component {
           <View
             style={styles.rightBottom} >
             <Ionicons name="md-volume-mute" style={styles.actionItem} />
-            <Ionicons name="ios-more" style={styles.actionItem} />
+            <Ionicons name="ios-more"
+              style={styles.actionItem}
+              onPress={() => this.props.onMore()} />
           </View>
         </View>
 

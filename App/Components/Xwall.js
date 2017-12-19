@@ -40,13 +40,15 @@ export default class Xwall extends Component {
     this.getData();
   }
 
-getData = async() => {
-     this.activitiesService.getXwallData((data)=>{
+  getData = async() => {
+    this.activitiesService.getXwallData((data)=>{
       this.setState({dataSource : this.ds.cloneWithRows(data.Response.UserXWallActivities)});
-     },(error)=>{
-       console.log('error');
-     });
-}
+    },(error)=>{
+     console.log('error');
+    });
+  }
+
+
 
   /* ***********************************************************
   * STEP 3
@@ -58,6 +60,10 @@ getData = async() => {
   *************************************************************/
   _renderRow (rowData) {
     return (<XwallTile activity={rowData} />)
+  }
+
+  bottomSheet() {
+    console.log("bottomSheet triggered!");
   }
 
   /* ***********************************************************
@@ -98,7 +104,7 @@ getData = async() => {
           dataSource={this.state.dataSource}
           renderRow={this._renderRow}
         />
-        <BottomSheet />
+        {/* <BottomSheet /> */}
       </View>
     )
   }
