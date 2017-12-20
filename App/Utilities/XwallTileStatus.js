@@ -11,7 +11,7 @@ export const getXwallTileStatus = (activityType) => {
       return (
         {
           backgroundColor: '#5a5',
-          icon: 'md-checkmark-circle',
+          icon: 'playlist-check',
         }
       );
     default:

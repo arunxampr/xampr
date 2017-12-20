@@ -35,7 +35,8 @@ export default class Xwall extends Component {
      this.activitiesService = Activities.create();
     // Datasource is always in state
     this.state = {
-      dataSource: this.ds.cloneWithRows(dataObjects)
+      dataSource: this.ds.cloneWithRows(dataObjects),
+      bottomSheet: false
     }
     this.getData();
   }
@@ -58,12 +59,20 @@ export default class Xwall extends Component {
   * e.g.
     return <MyCustomCell title={rowData.title} description={rowData.description} />
   *************************************************************/
-  _renderRow (rowData) {
-    return (<XwallTile activity={rowData} />)
+  _renderRow = (rowData) => (
+    <XwallTile activity={rowData} options={this.bottomSheet} />
+  )
+
+  bottomSheet = () => {
+    this.setState({
+      bottomSheet: true
+    });
   }
 
-  bottomSheet() {
-    console.log("bottomSheet triggered!");
+  bottomSheetClose = () => {
+    this.setState({
+      bottomSheet: false
+    })
   }
 
   /* ***********************************************************
@@ -98,14 +107,26 @@ export default class Xwall extends Component {
   }
 
   render () {
+    if (this.state.bottomSheet) {
+      return (
+        <View style={ApplicationStyles.container}>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this._renderRow}
+          />
+          <BottomSheet
+            close={this.bottomSheetClose}
+          />
+        </View>
+      );
+    }
     return (
       <View style={ApplicationStyles.container}>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this._renderRow}
         />
-        {/* <BottomSheet /> */}
       </View>
-    )
+    );
   }
 }

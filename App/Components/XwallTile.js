@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { TouchableOpacity, Text, View, Image } from 'react-native'
 import styles from './Styles/XwallTileStyles'
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { getActivityImageSource } from '../Utilities/Constants';
 import { formatDateTime } from '../Utilities/FormatDateTime';
 import { getXwallTileStatus } from '../Utilities/XwallTileStatus';
@@ -14,6 +14,10 @@ export default class XwallTile extends Component {
       activity: PropTypes.object,
       navigator: PropTypes.object
     }
+
+  options = () => {
+    this.props.options();
+  }
 
   render () {
 
@@ -40,7 +44,7 @@ export default class XwallTile extends Component {
         {/* left side */}
         <View style={styles.left} >
           <Image
-            source={ thumbnail }
+            source={thumbnail}
             style={styles.thumbnail} />
         </View>
 
@@ -48,18 +52,18 @@ export default class XwallTile extends Component {
         <View style={[styles.center, styles.border]} >
           <Text
             style={styles.title}>
-            { name }
+            {name}
           </Text>
           <Text
             style={styles.description}>
-             { lastMessage }
+             {lastMessage}
           </Text>
           <View
             style={[styles.status, {backgroundColor: statusBackgroundColor}]} >
-            <Ionicons name={ statusIcon } style={styles.statusIcon} />
+            <MaterialCommunityIcons name={statusIcon} style={styles.statusIcon} />
             <Text
               style={styles.statusText} >
-              { statusText }
+              {statusText}
             </Text>
           </View>
         </View>
@@ -68,15 +72,15 @@ export default class XwallTile extends Component {
         <View style={[styles.right, styles.border]} >
           <Text
             style={styles.time} >
-            { time }
+            {time}
           </Text>
           {/* more */}
           <View
             style={styles.rightBottom} >
-            <Ionicons name="md-volume-mute" style={styles.actionItem} />
-            <Ionicons name="ios-more"
-              style={styles.actionItem}
-              onPress={() => this.props.onMore()} />
+            <MaterialCommunityIcons name="volume-off" style={styles.mute} />
+            <MaterialCommunityIcons name="dots-horizontal"
+              style={styles.more}
+              onPress={this.options} />
           </View>
         </View>
 

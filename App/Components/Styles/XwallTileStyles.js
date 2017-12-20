@@ -6,11 +6,6 @@ var { width, height } = Dimensions.get('window');
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
 
- actionItem: {
-    color: '#777',
-    fontSize: 20,
-    marginLeft: 10,
-  },
   border: {
     borderColor: '#eee',
     borderBottomWidth: 1,
@@ -32,6 +27,16 @@ export default StyleSheet.create({
   left: {
     flex: 1,
     paddingLeft: 12,
+  },
+  more: {
+    color: '#666',
+    fontSize: 24,
+    marginLeft: 5,
+  },
+  mute: {
+    color: '#666',
+    fontSize: 15,
+    marginTop: 4,
   },
   right: {
     flex: 1,
@@ -68,7 +73,7 @@ export default StyleSheet.create({
   title: {
     color: '#222',
     fontSize: 15,
-    fontWeight: "400",
+    fontWeight: '500',
     marginTop: -4,
   },
   thumbnail: {

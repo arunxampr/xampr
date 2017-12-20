@@ -18,7 +18,7 @@ const create = (baseURL = beta2xampr) => {
     // here are some default headers
     headers: {
       'Cache-Control': 'no-cache',
-      'token' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ4YW1wciIsInVuaXF1ZV9uYW1lIjoiOTcwNDY3Mzc5NCIsInVzZXJJZCI6Ijk3MDQ2NzM3OTQiLCJkZXZpY2VJZCI6Ijg2NjQwOTAzMjM2MzE0MSIsInRpbWUiOiIxMi8xOS8yMDE3IDEwOjIyOjQ5IEFNIiwiZXhwIjoxNTEzNzY1MzY5LCJuYmYiOjE1MTM2Nzg5Njl9.MtTwIx_b2M2INcvSKPT21Ndp8ncvOmRFLQfIsOpQQUA'
+      'token' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ4YW1wciIsInVuaXF1ZV9uYW1lIjoiOTk1MjAwODA3MyIsInVzZXJJZCI6Ijk5NTIwMDgwNzMiLCJkZXZpY2VJZCI6IjM1ODk4MjA3OTE2NTMwMSIsInRpbWUiOiIxMi8yMC8yMDE3IDEwOjUxOjU4IEFNIiwiZXhwIjoxNTEzODUzNTE4LCJuYmYiOjE1MTM3NjcxMTh9.Knp_7xs2i5gRSCdYrT9eXfuJCkGUyYrVeyag8SvbaUw'
     },
     // 10 second timeout...
     timeout: 10000
