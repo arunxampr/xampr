@@ -7,17 +7,27 @@ export default class BottomSheet extends Component {
 
   state = {
     bottomSheetIn: new Animated.Value(0),
+    fadeAnim: new Animated.Value(0),
   }
 
   componentWillMount() {
+    Animated.timing(this.state.fadeAnim,{
+      toValue: 1,
+      duration: 100,
+      useNativeDriver: true,
+    }).start();
     Animated.timing(this.state.bottomSheetIn,{
       toValue: 1,
-      duration: 300,
+      duration: 100,
       useNativeDriver: true,
-    }).start()
+    }).start();
   }
 
   close = () => {
+    Animated.timing(this.state.fadeAnim,{
+      toValue: 0,
+      useNativeDriver: true,
+    }).start();
     Animated.timing(this.state.bottomSheetIn,{
       toValue: 0.5,
       duration: 100,
@@ -47,7 +57,11 @@ export default class BottomSheet extends Component {
 
   render() {
     return (
-      <View style={{ backgroundColor:'rgba(0,0,0,.4)', flex: 1, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0}}>
+      <Animated.View
+        style={{
+          backgroundColor:'rgba(0,0,0,.4)', flex: 1, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+          opacity: this.state.fadeAnim,
+        }}>
         <TouchableOpacity
           onPress={this.close}
           style={{ flex: 1 }} />
@@ -69,7 +83,7 @@ export default class BottomSheet extends Component {
             renderItem={this._renderItem}
           />
         </Animated.View>
-      </View>
+      </Animated.View>
     );
   }
 
