@@ -1,22 +1,31 @@
 import React, { Component } from 'react';
 import { Animated, FlatList, TouchableOpacity, View } from 'react-native';
 import BottomSheetListItem from './BottomSheetListItem';
+import XwallTile from './XwallTile';
 
 export default class BottomSheet extends Component {
 
   state = {
-    animateView: new Animated.Value(0),
+    bottomSheetIn: new Animated.Value(0),
   }
 
   componentWillMount() {
-    Animated.timing(this.state.animateView,{
+    Animated.timing(this.state.bottomSheetIn,{
       toValue: 1,
       duration: 300,
+      useNativeDriver: true,
     }).start()
   }
 
   close = () => {
-    this.props.close();
+    Animated.timing(this.state.bottomSheetIn,{
+      toValue: 0.5,
+      duration: 100,
+      useNativeDriver: true,
+    }).start();
+    setTimeout(() => {
+      this.props.close();
+    }, 100);
   }
 
   _keyExtractor = (item, index) => item.icon
@@ -47,9 +56,9 @@ export default class BottomSheet extends Component {
             height: 240,
             transform: [
               {
-                translateY: this.state.animateView.interpolate({
+                translateY: this.state.bottomSheetIn.interpolate({
                   inputRange: [0, 1],
-                  outputRange: [700, 1],
+                  outputRange: [500, 1],
                 })
               }
             ]
