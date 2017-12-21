@@ -5,7 +5,7 @@ const beta2xampr = 'http://beta2xampr.azurewebsites.net/api/';
 const prod = 'http://xamprrelease02.cloudapp.net/api/';
 
 // our "constructor"
-const create = (baseURL = beta2xampr) => {
+const create = (baseURL = prod) => {
   // ------
   // STEP 1
   // ------
@@ -18,7 +18,7 @@ const create = (baseURL = beta2xampr) => {
     // here are some default headers
     headers: {
       'Cache-Control': 'no-cache',
-      'token' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ4YW1wciIsInVuaXF1ZV9uYW1lIjoiOTk1MjAwODA3MyIsInVzZXJJZCI6Ijk5NTIwMDgwNzMiLCJkZXZpY2VJZCI6IjM1ODk4MjA3OTE2NTMwMSIsInRpbWUiOiIxMi8yMC8yMDE3IDEwOjUxOjU4IEFNIiwiZXhwIjoxNTEzODUzNTE4LCJuYmYiOjE1MTM3NjcxMTh9.Knp_7xs2i5gRSCdYrT9eXfuJCkGUyYrVeyag8SvbaUw'
+      'token' : 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ4YW1wciIsInVuaXF1ZV9uYW1lIjoiOTAzMDEzNjc3NiIsInVzZXJJZCI6IjkwMzAxMzY3NzYiLCJkZXZpY2VJZCI6Ijg2MTQyODAzMDk1NzE4OCIsInRpbWUiOiIxMi8yMS8yMDE3IDEwOjMwOjM0IEFNIiwiZXhwIjoxNTEzOTM4NjM0LCJuYmYiOjE1MTM4NTIyMzR9.y11OHXLhFKF_zilEpKSR4eyPCvMOb3Kpg-hfosnUgRo'
     },
     // 10 second timeout...
     timeout: 10000

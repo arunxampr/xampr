@@ -32,7 +32,7 @@ export default class XwallTile extends Component {
     let status = getXwallTileStatus(this.props.activity.ActivityType);
     let statusBackgroundColor = status.backgroundColor;
     let statusIcon = status.icon;
-    let statusText = '2/2';
+    let statusText = status.text;
 
     // date & time
     let time = formatDateTime(this.props.activity.ETA);
@@ -64,10 +64,7 @@ export default class XwallTile extends Component {
             </Text>
           </View>
           <View
-            style={{
-              flexDirection: 'row',
-              marginTop: 2,
-            }} >
+            style={styles.descriptionRow} >
             <Text
               style={styles.description}
               ellipsizeMode={'tail'}

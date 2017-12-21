@@ -23,6 +23,10 @@ export default StyleSheet.create({
     fontSize: 13,
     flex: 1,
   },
+  descriptionRow: {
+    flexDirection: 'row',
+    marginTop: 2,
+  },
   left: {
     flex: 1,
     paddingLeft: 12,
