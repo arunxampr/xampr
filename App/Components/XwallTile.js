@@ -41,23 +41,49 @@ export default class XwallTile extends Component {
       <View
         style={styles.container} >
 
-        {/* left side */}
+        {/* thumbnail */}
         <View style={styles.left} >
           <Image
             source={thumbnail}
             style={styles.thumbnail} />
         </View>
 
-        {/* center content */}
-        <View style={[styles.center, styles.border]} >
-          <Text
-            style={styles.title}>
-            {name}
-          </Text>
-          <Text
-            style={styles.description}>
-             {lastMessage}
-          </Text>
+        {/* content */}
+        <View style={styles.content} >
+          <View
+            style={styles.timeRow}>
+            <Text
+              style={styles.title}
+              ellipsizeMode={'tail'}
+              numberOfLines={1}>
+              {name}
+            </Text>
+            <Text
+              style={styles.time} >
+              {time}
+            </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              marginTop: 2,
+            }} >
+            <Text
+              style={styles.description}
+              ellipsizeMode={'tail'}
+              numberOfLines={1}>
+               {lastMessage}
+            </Text>
+            {/* more */}
+            <View
+              style={styles.moreRow} >
+              <MaterialCommunityIcons name="pin" style={styles.mute} />
+              <MaterialCommunityIcons name="volume-off" style={styles.mute} />
+              <MaterialCommunityIcons name="dots-horizontal"
+                style={styles.more}
+                onPress={this.options} />
+            </View>
+          </View>
           <View
             style={[styles.status, {backgroundColor: statusBackgroundColor}]} >
             <MaterialCommunityIcons name={statusIcon} style={styles.statusIcon} />
@@ -65,22 +91,6 @@ export default class XwallTile extends Component {
               style={styles.statusText} >
               {statusText}
             </Text>
-          </View>
-        </View>
-
-        {/* right side  */}
-        <View style={[styles.right, styles.border]} >
-          <Text
-            style={styles.time} >
-            {time}
-          </Text>
-          {/* more */}
-          <View
-            style={styles.rightBottom} >
-            <MaterialCommunityIcons name="volume-off" style={styles.mute} />
-            <MaterialCommunityIcons name="dots-horizontal"
-              style={styles.more}
-              onPress={this.options} />
           </View>
         </View>
 

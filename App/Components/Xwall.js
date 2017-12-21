@@ -107,26 +107,19 @@ export default class Xwall extends Component {
   }
 
   render () {
-    if (this.state.bottomSheet) {
-      return (
-        <View style={ApplicationStyles.container}>
-          <ListView
-            dataSource={this.state.dataSource}
-            renderRow={this._renderRow}
-          />
-          <BottomSheet
-            close={this.bottomSheetClose}
-          />
-        </View>
-      );
-    }
     return (
-      <View style={ApplicationStyles.container}>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this._renderRow}
+    <View style={ApplicationStyles.container}>
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={this._renderRow}
+      />
+      {
+        this.state.bottomSheet &&
+        <BottomSheet
+          close={this.bottomSheetClose}
         />
-      </View>
+      }
+    </View>
     );
   }
 }

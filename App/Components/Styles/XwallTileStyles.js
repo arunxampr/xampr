@@ -6,13 +6,12 @@ var { width, height } = Dimensions.get('window');
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
 
-  border: {
+  content: {
+    flex: 4,
     borderColor: '#eee',
     borderBottomWidth: 1,
     paddingBottom: 8,
-  },
-  center: {
-    flex: 4,
+    paddingRight: 8,
   },
   container: {
     backgroundColor: '#fff',
@@ -22,30 +21,25 @@ export default StyleSheet.create({
   description: {
     color: '#666',
     fontSize: 13,
-    paddingTop: 2,
+    flex: 1,
   },
   left: {
     flex: 1,
     paddingLeft: 12,
   },
   more: {
-    color: '#666',
+    color: '#777',
     fontSize: 24,
-    marginLeft: 5,
+    marginTop: -5,
+    paddingLeft: 5,
+  },
+  moreRow: {
+    flexDirection: 'row',
   },
   mute: {
-    color: '#666',
+    color: '#777',
     fontSize: 15,
-    marginTop: 4,
-  },
-  right: {
-    flex: 1,
-    alignItems: 'center',
-    paddingRight: 5,
-  },
-  rightBottom: {
-    flexDirection: 'row',
-    paddingTop: 5,
+    paddingLeft: 4,
   },
   status: {
     alignSelf: 'flex-start',
@@ -67,14 +61,19 @@ export default StyleSheet.create({
     marginRight: 4,
   },
   time: {
+    alignItems: 'flex-end',
     fontSize: 11,
     color: '#666',
+  },
+  timeRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingRight: 2,
   },
   title: {
     color: '#222',
     fontSize: 15,
-    fontWeight: '500',
-    marginTop: -4,
+    fontWeight: '500'
   },
   thumbnail: {
     width: 40,
