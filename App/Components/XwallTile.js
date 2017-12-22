@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { TouchableOpacity, Text, View, Image } from 'react-native'
 import styles from './Styles/XwallTileStyles'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { getActivityImageSource } from '../Utilities/Constants';
+import { getActivityAssets } from '../Utilities/Constants';
 import { formatDateTime } from '../Utilities/FormatDateTime';
 import { getXwallTileStatus } from '../Utilities/XwallTileStatus';
 
@@ -19,10 +19,19 @@ export default class XwallTile extends Component {
     this.props.options();
   }
 
+  _onPress = () => {
+    console.log("tis");
+  }
+
   render () {
 
+    // activity assets
+    const activity = getActivityAssets(this.props.activity.ActivityType);
+
     // tile icon
-    let thumbnail = getActivityImageSource(this.props.activity.ActivityType);
+    const thumbnail = activity ? activity.icon : '';
+    const thumbnailBackgroundColor = activity ?  activity.iconBackgroundColor : '';
+
 
     // name and last message
     let name = this.props.activity.ActivityName;
@@ -42,10 +51,10 @@ export default class XwallTile extends Component {
         style={styles.container} >
 
         {/* thumbnail */}
-        <View style={styles.left} >
-          <Image
-            source={thumbnail}
-            style={styles.thumbnail} />
+        <View style={styles.thumbnailContainer} >
+          <View onPress={this._onPress} style={[styles.thumbnailBackground, {backgroundColor: thumbnailBackgroundColor}]} >
+            <MaterialCommunityIcons name={thumbnail} style={styles.thumbnail} />
+          </View>
         </View>
 
         {/* content */}

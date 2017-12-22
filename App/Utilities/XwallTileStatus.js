@@ -3,14 +3,13 @@ export const getXwallTileStatus = (activityType) => {
     case 'EventPlannerActivity':
       return (
         {
-          backgroundColor: '#33a',
-
+          backgroundColor: '#32a',
         }
       );
     case 'MeetingActivity':
       return (
         {
-          backgroundColor: '#42a',
+          backgroundColor: '#32a',
           icon: 'clock',
           text: 'Dec 31, 11:30 PM',
         }
@@ -35,7 +34,6 @@ export const getXwallTileStatus = (activityType) => {
       return (
         {
           backgroundColor: '#fff',
-          icon: '',
         }
       );
   }

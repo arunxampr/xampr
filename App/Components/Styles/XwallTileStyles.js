@@ -27,10 +27,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginTop: 2,
   },
-  left: {
-    flex: 1,
-    paddingLeft: 12,
-  },
   more: {
     color: '#777',
     fontSize: 24,
@@ -80,9 +76,19 @@ export default StyleSheet.create({
     fontWeight: '500'
   },
   thumbnail: {
-    width: 40,
-    height: 40,
+    color: '#fff',
+    fontSize: 24,
+  },
+  thumbnailBackground: {
+    alignItems: 'center',
     borderRadius: 4,
-  }
+    height: 42,
+    justifyContent: 'center',
+    width: 42,
+  },
+  thumbnailContainer: {
+    alignItems: 'center',
+    width: 72,
+  },
 
 })
