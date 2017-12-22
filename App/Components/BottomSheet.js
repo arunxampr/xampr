@@ -77,11 +77,13 @@ export default class BottomSheet extends Component {
               }
             ]
           }}>
-          <FlatList
-            data={this.options()}
-            keyExtractor={this._keyExtractor}
-            renderItem={this._renderItem}
-          />
+          { this.props.alignItems === 'list' &&
+            <FlatList
+              data={this.options()}
+              keyExtractor={this._keyExtractor}
+              renderItem={this._renderItem}
+            />
+          }
         </Animated.View>
       </Animated.View>
     );

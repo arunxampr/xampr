@@ -116,6 +116,7 @@ export default class Xwall extends Component {
       {
         this.state.bottomSheet &&
         <BottomSheet
+          alignItems='list'
           close={this.bottomSheetClose}
         />
       }
