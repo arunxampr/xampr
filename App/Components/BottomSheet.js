@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Animated, FlatList, TouchableOpacity, View } from 'react-native';
 import BottomSheetListItem from './BottomSheetListItem';
-import XwallTile from './XwallTile';
+import XwallTileMore from './XwallTileMore';
 
 export default class BottomSheet extends Component {
 
@@ -73,7 +73,7 @@ export default class BottomSheet extends Component {
           style={{ flex: 1 }} />
         <Animated.View
           style={{
-            height: 48 * listItemsLength,
+            height: 48 * listItemsLength + 60,
             transform: [
               {
                 translateY: this.state.bottomSheetIn.interpolate({
@@ -85,6 +85,7 @@ export default class BottomSheet extends Component {
           }}>
           { this.props.alignItems === 'list' &&
             <View>
+              <XwallTileMore activity={this.props.activity} />
               <FlatList
                 data={this.options()}
                 keyExtractor={this._keyExtractor}
