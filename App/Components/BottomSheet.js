@@ -6,6 +6,7 @@ import XwallTile from './XwallTile';
 export default class BottomSheet extends Component {
 
   state = {
+    activity: this.props.activity,
     bottomSheetIn: new Animated.Value(0),
     fadeAnim: new Animated.Value(0),
   }
@@ -41,21 +42,26 @@ export default class BottomSheet extends Component {
   _keyExtractor = (item, index) => item.icon
 
   options = () => ([
-    { icon: "open-in-new", name: "View" },
-    { icon: "pin", name: "Pin" },
     { icon: "package-down", name: "Archive" },
     { icon: "delete", name: "Delete" },
-    { icon: "volume-off", name: "Mute" }
+    { icon: "volume-off", name: "Mute" },
+    // { icon: "pin", name: "Pin" },
+    { icon: "open-in-new", name: "View" },
+    { icon: "message-text", name: "Goto Chat" },
+    { icon: "information", name: "More Details" },
   ]);
 
   _renderItem = ({item}) => (
     <BottomSheetListItem
       icon={item.icon}
       name={item.name}
+      activity={this.state.activity}
     />
   );
 
   render() {
+    const listItems = this.options();
+    const listItemsLength = listItems.length;
     return (
       <Animated.View
         style={{
@@ -67,7 +73,7 @@ export default class BottomSheet extends Component {
           style={{ flex: 1 }} />
         <Animated.View
           style={{
-            height: 240,
+            height: 48 * listItemsLength,
             transform: [
               {
                 translateY: this.state.bottomSheetIn.interpolate({
@@ -78,11 +84,13 @@ export default class BottomSheet extends Component {
             ]
           }}>
           { this.props.alignItems === 'list' &&
-            <FlatList
-              data={this.options()}
-              keyExtractor={this._keyExtractor}
-              renderItem={this._renderItem}
-            />
+            <View>
+              <FlatList
+                data={this.options()}
+                keyExtractor={this._keyExtractor}
+                renderItem={this._renderItem}
+              />
+            </View>
           }
         </Animated.View>
       </Animated.View>

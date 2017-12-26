@@ -15,10 +15,12 @@ export default class XwallTile extends Component {
       navigator: PropTypes.object
     }
 
+  // show bottomsheet
   options = () => {
-    this.props.options();
+    this.props.options(this.props.activity);
   }
 
+  // dp modal show function
   _onPress = () => {
     console.log("tis");
   }
@@ -31,7 +33,6 @@ export default class XwallTile extends Component {
     // tile icon
     const thumbnail = activity ? activity.icon : '';
     const thumbnailBackgroundColor = activity ?  activity.iconBackgroundColor : '';
-
 
     // name and last message
     let name = this.props.activity.ActivityName;
@@ -52,9 +53,9 @@ export default class XwallTile extends Component {
 
         {/* thumbnail */}
         <View style={styles.thumbnailContainer} >
-          <View onPress={this._onPress} style={[styles.thumbnailBackground, {backgroundColor: thumbnailBackgroundColor}]} >
+          <TouchableOpacity onPress={this._onPress} style={[styles.thumbnailBackground, {backgroundColor: thumbnailBackgroundColor}]} >
             <MaterialCommunityIcons name={thumbnail} style={styles.thumbnail} />
-          </View>
+          </TouchableOpacity>
         </View>
 
         {/* content */}

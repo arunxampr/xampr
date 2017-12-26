@@ -36,6 +36,7 @@ export default class Xwall extends Component {
     // Datasource is always in state
     this.state = {
       dataSource: this.ds.cloneWithRows(dataObjects),
+      activity: {},
       bottomSheet: false
     }
     this.getData();
@@ -63,8 +64,9 @@ export default class Xwall extends Component {
     <XwallTile activity={rowData} options={this.bottomSheet} />
   )
 
-  bottomSheet = () => {
+  bottomSheet = (activity) => {
     this.setState({
+      activity: activity,
       bottomSheet: true
     });
   }
@@ -117,6 +119,7 @@ export default class Xwall extends Component {
         this.state.bottomSheet &&
         <BottomSheet
           alignItems='list'
+          activity={this.state.activity}
           close={this.bottomSheetClose}
         />
       }
