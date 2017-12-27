@@ -16,7 +16,7 @@ export default class MainScreen extends PureComponent {
       { key: 'first', title: 'Dashboard' },
       { key: 'second', title: 'X-Wall' },
     ],
-  };
+};
 
   _handleIndexChange = index => this.setState({ index });
 

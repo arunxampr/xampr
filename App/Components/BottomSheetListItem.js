@@ -15,7 +15,7 @@ export default class BottomSheetListItem extends Component {
         <View
         style={{alignItems: 'center', backgroundColor: '#fff', borderBottomWidth: 1, borderColor: '#eee', flexDirection: 'row', height: 48}} >
           <MaterialCommunityIcons name={this.props.icon}
-            style={{color: '#444', fontSize: 24, paddingLeft: 16, paddingRight: 16}} />
+            style={{color: this.props.activity.ActivityThemeCode, fontSize: 24, paddingLeft: 16, paddingRight: 16}} />
           <Text style={{color: '#444', fontSize: 16, paddingLeft: 16, paddingRight: 16}}>
             {this.props.name}
           </Text>

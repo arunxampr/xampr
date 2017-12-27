@@ -1,12 +1,11 @@
 import ApplicationStyles from '../Themes/ApplicationStyles';
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { TouchableOpacity, Text, View, Image } from 'react-native'
+import { Text, View } from 'react-native'
 import styles from './Styles/XwallTileStyles'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { getActivityAssets } from '../Utilities/Constants';
 import { formatDateTime } from '../Utilities/FormatDateTime';
-import { getXwallTileStatus } from '../Utilities/XwallTileStatus';
 
 export default class XwallTileMore extends Component {
   static propTypes = {
@@ -37,9 +36,9 @@ export default class XwallTileMore extends Component {
 
         {/* thumbnail */}
         <View style={styles.thumbnailContainer} >
-          <TouchableOpacity onPress={this._onPress} style={[styles.thumbnailBackground, {backgroundColor: thumbnailBackgroundColor}]} >
+          <View style={[styles.thumbnailBackground, {backgroundColor: this.props.activity.ActivityThemeCode}]} >
             <MaterialCommunityIcons name={thumbnail} style={styles.thumbnail} />
-          </TouchableOpacity>
+          </View>
         </View>
 
         {/* content */}
