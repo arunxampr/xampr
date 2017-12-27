@@ -25,7 +25,8 @@ export default StyleSheet.create({
   },
   descriptionRow: {
     flexDirection: 'row',
-    marginTop: 2,
+    paddingTop: 2,
+    paddingBottom: 2,
   },
   more: {
     color: '#777',

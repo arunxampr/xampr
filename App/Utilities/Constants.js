@@ -17,8 +17,11 @@ export const getActivityColor = (activityType) => {
 
 export const getActivityIcon = (activityType) => {
   const activityIcons = {
+    CommunityActivity: 'message-reply-text',
+    ContainerActivity: 'book-open',
     ForumActivity: 'forum',
     MeetingActivity: 'calendar-today',
+    OneToOneActivity: 'message-text',
     QuestionActivity: 'help-circle',
     PollActivity: 'poll',
     ProjectActivity: 'clipboard-check',

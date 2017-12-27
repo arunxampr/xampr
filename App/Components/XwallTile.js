@@ -40,12 +40,16 @@ export default class XwallTile extends Component {
 
     // status is displayed below last message
     let status = getXwallTileStatus(this.props.activity.ActivityType);
-    let statusBackgroundColor = status.backgroundColor;
-    let statusIcon = status.icon;
-    let statusText = status.text;
+    if (status) {
+      var statusBackgroundColor = status.backgroundColor;
+      var statusIcon = status.icon;
+      var statusText = status.text;
+    }
 
     // date & time
     let time = formatDateTime(this.props.activity.ETA);
+
+
 
     return (
       <View
@@ -91,14 +95,17 @@ export default class XwallTile extends Component {
                 onPress={this.options} />
             </View>
           </View>
-          <View
-            style={[styles.status, {backgroundColor: statusBackgroundColor}]} >
-            <MaterialCommunityIcons name={statusIcon} style={styles.statusIcon} />
-            <Text
-              style={styles.statusText} >
-              {statusText}
-            </Text>
-          </View>
+          { // render only if status exist
+            status &&
+            <View
+              style={[styles.status, {backgroundColor: statusBackgroundColor}]} >
+              <MaterialCommunityIcons name={statusIcon} style={styles.statusIcon} />
+              <Text
+                style={styles.statusText} >
+                {statusText}
+              </Text>
+            </View>
+          }
         </View>
 
       </View>

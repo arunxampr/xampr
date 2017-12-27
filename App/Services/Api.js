@@ -5,7 +5,7 @@ const beta2xampr = 'http://beta2xampr.azurewebsites.net/api/';
 const prod = 'http://xamprrelease02.cloudapp.net/api/';
 
 // our "constructor"
-const create = (baseURL = beta2xampr) => {
+const create = (baseURL = prod) => {
   // ------
   // STEP 1
   // ------

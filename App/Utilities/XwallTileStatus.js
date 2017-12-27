@@ -31,10 +31,6 @@ export const getXwallTileStatus = (activityType) => {
         }
       );
     default:
-      return (
-        {
-          backgroundColor: '#fff',
-        }
-      );
+      return false;
   }
 }

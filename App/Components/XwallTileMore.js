@@ -32,7 +32,7 @@ export default class XwallTileMore extends Component {
 
     return (
       <View
-        style={styles.container} >
+        style={[styles.container, {borderBottomWidth: 1, backgroundColor: this.props.activity.ActivityThemeCode, borderColor: this.props.activity.ActivityThemeCode}]} >
 
         {/* thumbnail */}
         <View style={styles.thumbnailContainer} >
@@ -42,11 +42,11 @@ export default class XwallTileMore extends Component {
         </View>
 
         {/* content */}
-        <View style={styles.content} >
+        <View style={[styles.content, {borderBottomWidth: 0}]} >
           <View
             style={styles.timeRow}>
             <Text
-              style={styles.title}
+              style={[styles.title, {color: '#fff'}]}
               ellipsizeMode={'tail'}
               numberOfLines={1}>
               {name}
@@ -59,7 +59,7 @@ export default class XwallTileMore extends Component {
           <View
             style={styles.descriptionRow} >
             <Text
-              style={styles.description}
+              style={[styles.description, {color: '#fff'}]}
               ellipsizeMode={'tail'}
               numberOfLines={1}>
                {lastMessage}
