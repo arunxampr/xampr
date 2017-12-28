@@ -18,7 +18,6 @@ export const getXwallTileStatus = (activityType) => {
       return (
         {
           backgroundColor: '#f80',
-          icon: '',
           text: 'In Progress',
         }
       );

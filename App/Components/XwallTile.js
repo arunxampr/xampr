@@ -22,12 +22,12 @@ export default class XwallTile extends Component {
 
   // dp modal show function
   onPressThumbnail = () => {
-    alert("Thumbnail Modal of ", this.props.activity.ActivityGuid);
+    alert("Thumbnail Modal -> ActivityGuid: " + this.props.activity.ActivityGuid);
   }
 
   // navigate to view
-  onPressItem = () => {    
-    alert("ActivityGuid:", this.props.activity.ActivityGuid);
+  onPressItem = () => {
+    alert("View -> ActivityGuid: " + this.props.activity.ActivityGuid);
   }
 
   render () {
