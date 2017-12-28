@@ -1,7 +1,7 @@
 import ApplicationStyles from '../Themes/ApplicationStyles';
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableWithoutFeedback, TouchableOpacity, View } from 'react-native'
 import styles from './Styles/XwallTileStyles'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { getActivityAssets } from '../Utilities/Constants';
@@ -21,8 +21,13 @@ export default class XwallTile extends Component {
   }
 
   // dp modal show function
-  _onPress = () => {
-    // console.log("display dp modal");
+  onPressThumbnail = () => {
+    alert("Thumbnail Modal of ", this.props.activity.ActivityGuid);
+  }
+
+  // navigate to view
+  onPressItem = () => {    
+    alert("ActivityGuid:", this.props.activity.ActivityGuid);
   }
 
   render () {
@@ -49,21 +54,22 @@ export default class XwallTile extends Component {
     // date & time
     let time = formatDateTime(this.props.activity.ETA);
 
-
-
     return (
       <View
         style={styles.container} >
 
         {/* thumbnail */}
         <View style={styles.thumbnailContainer} >
-          <TouchableOpacity onPress={this._onPress} style={[styles.thumbnailBackground, {backgroundColor: this.props.activity.ActivityThemeCode}]} >
+          <TouchableOpacity onPress={this.onPressThumbnail} style={[styles.thumbnailBackground, {backgroundColor: this.props.activity.ActivityThemeCode}]} >
             <MaterialCommunityIcons name={thumbnail} style={styles.thumbnail} />
           </TouchableOpacity>
         </View>
 
         {/* content */}
-        <View style={styles.content} >
+        <TouchableOpacity
+          onPress={this.onPressItem}
+          style={styles.content} >
+          <View>
           <View
             style={styles.timeRow}>
             <Text
@@ -106,7 +112,8 @@ export default class XwallTile extends Component {
               </Text>
             </View>
           }
-        </View>
+          </View>
+        </TouchableOpacity>
 
       </View>
       )
