@@ -14,9 +14,9 @@ export default class MainScreen extends PureComponent {
     index: 1,
     routes: [
       { key: 'first', title: 'Dashboard' },
-      { key: 'second', title: 'Work' },
+      { key: 'second', title: 'X-Wall' },
     ],
-  };
+};
 
   _handleIndexChange = index => this.setState({ index });
 

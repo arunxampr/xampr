@@ -1,4 +1,5 @@
 import XwallTile from './XwallTile';
+import BottomSheet from './BottomSheet';
 import Activities from '../Services/Activities';
 import Api from '../Services/Api';
 import React, { Component } from 'react'
@@ -27,25 +28,29 @@ export default class Xwall extends Component {
     *   (r1, r2) => r1.id !== r2.id}
     *************************************************************/
     const rowHasChanged = (r1, r2) => r1 !== r2
-    
+
     // DataSource configured
      this.ds = new ListView.DataSource({rowHasChanged})
 
      this.activitiesService = Activities.create();
     // Datasource is always in state
     this.state = {
-      dataSource: this.ds.cloneWithRows(dataObjects)
+      dataSource: this.ds.cloneWithRows(dataObjects),
+      activity: {},
+      bottomSheet: false
     }
     this.getData();
   }
 
-getData = async() => {
-     this.activitiesService.getXwallData((data)=>{
+  getData = async() => {
+    this.activitiesService.getXwallData((data)=>{
       this.setState({dataSource : this.ds.cloneWithRows(data.Response.UserXWallActivities)});
-     },(error)=>{
-       console.log('error');
-     });
-}
+    },(error)=>{
+     console.log('error');
+    });
+  }
+
+
 
   /* ***********************************************************
   * STEP 3
@@ -55,8 +60,21 @@ getData = async() => {
   * e.g.
     return <MyCustomCell title={rowData.title} description={rowData.description} />
   *************************************************************/
-  _renderRow (rowData) {
-    return (<XwallTile activity={rowData} />)
+  _renderRow = (rowData) => (
+    <XwallTile activity={rowData} options={this.bottomSheet} />
+  )
+
+  bottomSheet = (activity) => {
+    this.setState({
+      activity: activity,
+      bottomSheet: true
+    });
+  }
+
+  bottomSheetClose = () => {
+    this.setState({
+      bottomSheet: false
+    })
   }
 
   /* ***********************************************************
@@ -92,12 +110,20 @@ getData = async() => {
 
   render () {
     return (
-      <View style={ApplicationStyles.container}>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this._renderRow}
+    <View style={ApplicationStyles.container}>
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={this._renderRow}
+      />
+      {
+        this.state.bottomSheet &&
+        <BottomSheet
+          alignItems='list'
+          activity={this.state.activity}
+          close={this.bottomSheetClose}
         />
-      </View>
-    )
+      }
+    </View>
+    );
   }
 }

@@ -56,3 +56,7 @@ buck-out/
 #
 .env.example
 .env
+
+# Expo
+#
+\.expo/

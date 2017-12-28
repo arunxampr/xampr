@@ -5,45 +5,45 @@ import { ApplicationStyles, Metrics, Colors } from '../../Themes/index';
 var { width, height } = Dimensions.get('window');
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
-  
- actionItem: {
-    color: '#777',
-    fontSize: 20,
-    marginLeft: 10,
-  },
-  border: {
-    borderColor: '#ddd',
+
+  content: {
+    flex: 4,
+    borderColor: '#eee',
     borderBottomWidth: 1,
     paddingBottom: 8,
-  },
-  center: {
-    flex: 4,
+    paddingRight: 8,
   },
   container: {
     backgroundColor: '#fff',
     flexDirection: 'row',
+    paddingTop:10,
   },
   description: {
     color: '#666',
     fontSize: 13,
-    paddingTop: 2,
-  },
-  left: {
     flex: 1,
-    paddingLeft: 12,
   },
-  right: {
-    flex: 1,
-    alignItems: 'center',
-    paddingRight: 5,
-  },
-  rightBottom: {
+  descriptionRow: {
     flexDirection: 'row',
-    paddingTop: 5,
+    paddingTop: 2,
+    paddingBottom: 2,
+  },
+  more: {
+    color: '#777',
+    fontSize: 24,
+    marginTop: -5,
+    paddingLeft: 5,
+  },
+  moreRow: {
+    flexDirection: 'row',
+  },
+  mute: {
+    color: '#777',
+    fontSize: 15,
+    paddingLeft: 4,
   },
   status: {
     alignSelf: 'flex-start',
-    backgroundColor: '#5a5',
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 2,
@@ -62,17 +62,34 @@ export default StyleSheet.create({
     marginRight: 4,
   },
   time: {
+    alignItems: 'flex-end',
     fontSize: 11,
     color: '#666',
   },
+  timeRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingRight: 2,
+  },
   title: {
+    color: '#222',
     fontSize: 15,
-    fontWeight: "400",
+    fontWeight: '500'
   },
   thumbnail: {
-    width: 40,
-    height: 40,
+    color: '#fff',
+    fontSize: 24,
+  },
+  thumbnailBackground: {
+    alignItems: 'center',
     borderRadius: 4,
-  }
+    height: 42,
+    justifyContent: 'center',
+    width: 42,
+  },
+  thumbnailContainer: {
+    alignItems: 'center',
+    width: 72,
+  },
 
 })

@@ -1,60 +1,111 @@
 import ApplicationStyles from '../Themes/ApplicationStyles';
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { TouchableOpacity, Text, View, Image } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 import styles from './Styles/XwallTileStyles'
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { getActivityAssets } from '../Utilities/Constants';
+import { formatDateTime } from '../Utilities/FormatDateTime';
+import { getXwallTileStatus } from '../Utilities/XwallTileStatus';
 
 export default class XwallTile extends Component {
-    static propTypes = {
-        onPress: PropTypes.func,
-        activity: PropTypes.object,
-        navigator: PropTypes.object
-      }
-    
+  static propTypes = {
+      onPress: PropTypes.func,
+      activity: PropTypes.object,
+      navigator: PropTypes.object
+    }
+
+  // show bottomsheet
+  options = () => {
+    this.props.options(this.props.activity);
+  }
+
+  // dp modal show function
+  _onPress = () => {
+    // console.log("display dp modal");
+  }
+
   render () {
+
+    // activity assets
+    const activity = getActivityAssets(this.props.activity.ActivityType);
+
+    // tile icon
+    const thumbnail = activity ? activity.icon : '';
+    const thumbnailBackgroundColor = activity ?  activity.iconBackgroundColor : '';
+
+    // name and last message
+    let name = this.props.activity.ActivityName;
+    let lastMessage = this.props.activity.LastMessage;
+
+    // status is displayed below last message
+    let status = getXwallTileStatus(this.props.activity.ActivityType);
+    if (status) {
+      var statusBackgroundColor = status.backgroundColor;
+      var statusIcon = status.icon;
+      var statusText = status.text;
+    }
+
+    // date & time
+    let time = formatDateTime(this.props.activity.ETA);
+
+
+
     return (
-        <View
+      <View
         style={styles.container} >
 
-        {/* left side */}
-        <View style={styles.left} >
-          <Image
-            source={require('../Images/activity_icons/EventPlannerActivity.png')}
-            style={styles.thumbnail} />
+        {/* thumbnail */}
+        <View style={styles.thumbnailContainer} >
+          <TouchableOpacity onPress={this._onPress} style={[styles.thumbnailBackground, {backgroundColor: this.props.activity.ActivityThemeCode}]} >
+            <MaterialCommunityIcons name={thumbnail} style={styles.thumbnail} />
+          </TouchableOpacity>
         </View>
 
-        {/* center content */}
-        <View style={[styles.center, styles.border]} >
-          <Text
-            style={styles.title}>
-            {this.props.activity.ActivityName}
-          </Text>
-          <Text
-            style={styles.description}>
-             {this.props.activity.ActivityDescription}
-          </Text>
+        {/* content */}
+        <View style={styles.content} >
           <View
-            style={styles.status} >
-            <Ionicons name="md-checkmark-circle" style={styles.statusIcon} />
+            style={styles.timeRow}>
             <Text
-              style={styles.statusText} >
-              0/2
+              style={styles.title}
+              ellipsizeMode={'tail'}
+              numberOfLines={1}>
+              {name}
+            </Text>
+            <Text
+              style={styles.time} >
+              {time}
             </Text>
           </View>
-        </View>
-
-        {/* right side  */}
-        <View style={[styles.right, styles.border]} >
-          <Text
-            style={styles.time} >
-            4:00 PM
-          </Text>
           <View
-            style={styles.rightBottom} >
-            <Ionicons name="md-volume-mute" style={styles.actionItem} />
-            <Ionicons name="ios-more" style={styles.actionItem} />
+            style={styles.descriptionRow} >
+            <Text
+              style={styles.description}
+              ellipsizeMode={'tail'}
+              numberOfLines={1}>
+               {lastMessage}
+            </Text>
+            {/* more */}
+            <View
+              style={styles.moreRow} >
+              <MaterialCommunityIcons name="pin" style={styles.mute} />
+              <MaterialCommunityIcons name="volume-off" style={styles.mute} />
+              <MaterialCommunityIcons name="dots-horizontal"
+                style={styles.more}
+                onPress={this.options} />
+            </View>
           </View>
+          { // render only if status exist
+            status &&
+            <View
+              style={[styles.status, {backgroundColor: statusBackgroundColor}]} >
+              <MaterialCommunityIcons name={statusIcon} style={styles.statusIcon} />
+              <Text
+                style={styles.statusText} >
+                {statusText}
+              </Text>
+            </View>
+          }
         </View>
 
       </View>
