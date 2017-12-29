@@ -17,8 +17,12 @@ export default class XwallTileMore extends Component {
   render () {
 
     // tile icon
-    const thumbnail = getActivityIcon(this.props.activity.ActivityType);
-    const thumbnailBackgroundColor = this.props.activity.ActivityThemeCode;
+    let thumbnail = getActivityIcon(this.props.activity.ActivityType);
+    thumbnail = thumbnail ? thumbnail : 'blur';
+
+    // activity color
+    let activityColor = this.props.activity.ActivityThemeCode;
+    activityColor = activityColor ? activityColor : '#eee';
 
     // name and last message
     let name = this.props.activity.ActivityName;
@@ -33,7 +37,7 @@ export default class XwallTileMore extends Component {
 
         {/* thumbnail */}
         <View style={styles.thumbnailContainer} >
-          <View style={[styles.thumbnailBackground, {backgroundColor: thumbnailBackgroundColor}]} >
+          <View style={[styles.thumbnailBackground, {backgroundColor: activityColor}]} >
             <MaterialCommunityIcons name={thumbnail} style={styles.thumbnail} />
           </View>
         </View>

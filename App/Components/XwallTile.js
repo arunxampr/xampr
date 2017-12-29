@@ -1,7 +1,7 @@
 import ApplicationStyles from '../Themes/ApplicationStyles';
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Modal, Text, TouchableWithoutFeedback, TouchableOpacity, View } from 'react-native'
+import { Animated, Modal, Text, TouchableWithoutFeedback, TouchableOpacity, View } from 'react-native'
 import styles from './Styles/XwallTileStyles'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { getActivityIcon } from '../Utilities/Constants';
@@ -10,10 +10,10 @@ import { getXwallTileStatus } from '../Utilities/XwallTileStatus';
 
 export default class XwallTile extends Component {
   static propTypes = {
-      onPress: PropTypes.func,
-      activity: PropTypes.object,
-      navigator: PropTypes.object
-    }
+    onPress: PropTypes.func,
+    activity: PropTypes.object,
+    navigator: PropTypes.object
+  }
 
   constructor() {
     super();
@@ -43,8 +43,10 @@ export default class XwallTile extends Component {
     // tile icon
     let thumbnail = getActivityIcon(this.props.activity.ActivityType);
     thumbnail = thumbnail ? thumbnail : 'blur';
-    let thumbnailBackgroundColor = this.props.activity.ActivityThemeCode;
-    thumbnailBackgroundColor = thumbnailBackgroundColor ? thumbnailBackgroundColor : '#eee';
+
+    // activity color
+    let activityColor = this.props.activity.ActivityThemeCode;
+    activityColor = activityColor ? activityColor : '#eee';
 
     // name and last message
     let name = this.props.activity.ActivityName;
@@ -67,32 +69,32 @@ export default class XwallTile extends Component {
 
         {/* thumbnail */}
         <View style={styles.thumbnailContainer} >
-          <TouchableOpacity onPress={this.onPressThumbnail} style={[styles.thumbnailBackground, {backgroundColor: thumbnailBackgroundColor}]} >
+          <TouchableOpacity onPress={this.onPressThumbnail} style={[styles.thumbnailBackground, {backgroundColor: activityColor}]} >
             <MaterialCommunityIcons name={thumbnail} style={styles.thumbnail} />
           </TouchableOpacity>
         </View>
 
         <Modal
-          animationType='fade'
+          
           visible={this.state.thumbnailModalVisible}
           onRequestClose={()=>{this.setState({thumbnailModalVisible: false})}}
           transparent={true} >
           <TouchableWithoutFeedback
             onPress={()=>this.setState({thumbnailModalVisible: false})}>
-          <View style={{alignItems: 'center', backgroundColor: '#0004', justifyContent: 'center', flex: 1}}>
+          <View style={{alignItems: 'center', backgroundColor: '#0008', justifyContent: 'center', flex: 1}}>
             <TouchableWithoutFeedback>
-              <View style={{backgroundColor: '#ace', width: 200}} >
+              <View style={{backgroundColor: activityColor, elevation:10, width: 250}} >
                 <View style={{backgroundColor: '#0001', padding: 6}}>
-                  <Text style={{color: '#fff', fontSize: 14, paddingLeft: 10}}>Title</Text>
+                  <Text style={{color: '#fff', fontSize: 18, paddingLeft: 10}}>{name}</Text>
                 </View>
-                <View style={{alignItems: 'center', justifyContent: 'center', height: 150, }}>
-                  <MaterialCommunityIcons name='clipboard-text'
+                <View style={{alignItems: 'center', justifyContent: 'center', height: 200, }}>
+                  <MaterialCommunityIcons name={thumbnail}
                     style={{color: '#fffa', fontSize: 72}} />
                 </View>
                 <View style={{backgroundColor: '#fff', flexDirection: 'row', padding: 10, justifyContent: 'space-around'}}>
-                  <MaterialCommunityIcons name='message-text' style={{fontSize: 18, color: '#63a3ff'}} />
-                  <MaterialCommunityIcons name='information-outline' style={{fontSize: 18, color: '#63a3ff'}} />
-                  <MaterialCommunityIcons name='open-in-new' style={{fontSize: 18, color: '#63a3ff'}} />
+                  <MaterialCommunityIcons name='message-text' style={{fontSize: 24, color: activityColor}} />
+                  <MaterialCommunityIcons name='information-outline' style={{fontSize: 24, color: activityColor}} />
+                  <MaterialCommunityIcons name='open-in-new' style={{fontSize: 24, color: activityColor}} />
                 </View>
               </View>
             </TouchableWithoutFeedback>
