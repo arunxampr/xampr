@@ -1,7 +1,7 @@
 import ApplicationStyles from '../Themes/ApplicationStyles';
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Modal, Text, TouchableWithoutFeedback, TouchableOpacity, View } from 'react-native'
 import styles from './Styles/XwallTileStyles'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { getActivityIcon } from '../Utilities/Constants';
@@ -15,6 +15,13 @@ export default class XwallTile extends Component {
       navigator: PropTypes.object
     }
 
+  constructor() {
+    super();
+    this.state = {
+      thumbnailModalVisible: false,
+    }
+  }
+
   // show bottomsheet
   options = () => {
     this.props.options(this.props.activity);
@@ -22,7 +29,8 @@ export default class XwallTile extends Component {
 
   // dp modal show function
   onPressThumbnail = () => {
-    alert("Thumbnail Modal -> ActivityGuid: " + this.props.activity.ActivityGuid);
+    // alert("Thumbnail Modal -> ActivityGuid: " + this.props.activity.ActivityGuid);
+    this.setState({thumbnailModalVisible: true});
   }
 
   // navigate to view
@@ -33,8 +41,10 @@ export default class XwallTile extends Component {
   render () {
 
     // tile icon
-    const thumbnail = getActivityIcon(this.props.activity.ActivityType);
-    const thumbnailBackgroundColor = this.props.activity.ActivityThemeCode;
+    let thumbnail = getActivityIcon(this.props.activity.ActivityType);
+    thumbnail = thumbnail ? thumbnail : 'blur';
+    let thumbnailBackgroundColor = this.props.activity.ActivityThemeCode;
+    thumbnailBackgroundColor = thumbnailBackgroundColor ? thumbnailBackgroundColor : '#eee';
 
     // name and last message
     let name = this.props.activity.ActivityName;
@@ -61,6 +71,34 @@ export default class XwallTile extends Component {
             <MaterialCommunityIcons name={thumbnail} style={styles.thumbnail} />
           </TouchableOpacity>
         </View>
+
+        <Modal
+          animationType='fade'
+          visible={this.state.thumbnailModalVisible}
+          onRequestClose={()=>{this.setState({thumbnailModalVisible: false})}}
+          transparent={true} >
+          <TouchableWithoutFeedback
+            onPress={()=>this.setState({thumbnailModalVisible: false})}>
+          <View style={{alignItems: 'center', backgroundColor: '#0004', justifyContent: 'center', flex: 1}}>
+            <TouchableWithoutFeedback>
+              <View style={{backgroundColor: '#ace', width: 200}} >
+                <View style={{backgroundColor: '#0001', padding: 6}}>
+                  <Text style={{color: '#fff', fontSize: 14, paddingLeft: 10}}>Title</Text>
+                </View>
+                <View style={{alignItems: 'center', justifyContent: 'center', height: 150, }}>
+                  <MaterialCommunityIcons name='clipboard-text'
+                    style={{color: '#fffa', fontSize: 72}} />
+                </View>
+                <View style={{backgroundColor: '#fff', flexDirection: 'row', padding: 10, justifyContent: 'space-around'}}>
+                  <MaterialCommunityIcons name='message-text' style={{fontSize: 18, color: '#63a3ff'}} />
+                  <MaterialCommunityIcons name='information-outline' style={{fontSize: 18, color: '#63a3ff'}} />
+                  <MaterialCommunityIcons name='open-in-new' style={{fontSize: 18, color: '#63a3ff'}} />
+                </View>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+          </TouchableWithoutFeedback>
+        </Modal>
 
         {/* content */}
         <TouchableOpacity
